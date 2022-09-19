@@ -2,7 +2,7 @@ from yaml import safe_load
 from os import getcwd, path, makedirs
 from sys import argv
 
-template_path = path.join(getcwd(), "templates")
+template_path = path.join(getcwd(), 'templates')
 root_path = ""
 template_file = ""
 
@@ -27,8 +27,8 @@ def folder_create():
         template_file = argv[1]
         root_path = argv[2]
     else:
-        print("Invalid number of arguments, please pass the template name and the root path")
-        print("Example: python FolderCreate.py VFX.yaml d:\\projects\\projectname")
+        print('Invalid number of arguments, please pass the template name and the root path')
+        print('Example: python FolderCreate.py VFX.yaml d:\\projects\\projectname')
         quit()
 
     with open(path.join(template_path, template_file), 'r') as stream:
@@ -37,7 +37,10 @@ def folder_create():
 
     for i in newpaths:
         print(path.join(root_path, i))
-        makedirs(path.join(root_path, i))
+        try:
+            makedirs(path.join(root_path, i))
+        except Exception:
+            print('An error occured, please check if the directory is writable.')
 
 
 if __name__ == "__main__":

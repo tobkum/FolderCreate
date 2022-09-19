@@ -4,4 +4,4 @@ Creates a folder structure based on a YAML template. For an example of such a YA
 ```python FolderCreate.py VFX.yaml d:\projects\newproject```
 
 ## TODO:
-- [ ] error handling
+- [x] error handling
