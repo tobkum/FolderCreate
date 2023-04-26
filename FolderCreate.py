@@ -55,11 +55,11 @@ def create_folders():
             )
         else:
             dpg.set_value("message", "Done")
-            
-    dpg.configure_item("modal_id", show=True)
+
+    dpg.show_item("modal_id")
 
 
-with dpg.window(tag="Primary Window"):
+with dpg.window(tag="Primary Window", autosize=True):
     with dpg.group(horizontal=True) as directory_group:
         # Path text field & Directory Selector button
         dpg.add_input_text(default_value=default_path, tag="root_path")
@@ -75,6 +75,8 @@ with dpg.window(tag="Primary Window"):
             width=600,
             height=500,
             default_path=default_path,
+            modal=True,
+            
         )
     # Template select dropdown
     dpg.add_combo(
@@ -97,6 +99,7 @@ with dpg.window(tag="Primary Window"):
         tag="modal_id",
         pos=(300, 200),
         no_resize=True,
+        autosize=True
     ):
         dpg.add_text("ERROR", tag="message")
         dpg.add_button(
