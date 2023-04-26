@@ -47,20 +47,21 @@ def create_folders():
         dict_to_dir(data)
     for i in newpaths:
         try:
-            makedirs(path.join(root_path, i))
+            makedirs(path.join(root_path, i), exist_ok=True)
         except Exception:
-            dpg.configure_item("modal_id", show=True)
-            dpg.configure_item(
+            dpg.set_value(
                 "message",
-                default_value="An error occured, please check if the directory is writable.",
+                "An error occured, please check if the directory is writable.",
             )
         else:
-            dpg.configure_item("modal_id", show=True)
-            dpg.configure_item("message", default_value="Done")
+            dpg.set_value("message", "Done")
+            
+    dpg.configure_item("modal_id", show=True)
 
 
 with dpg.window(tag="Primary Window"):
     with dpg.group(horizontal=True) as directory_group:
+        # Path text field & Directory Selector button
         dpg.add_input_text(default_value=default_path, tag="root_path")
         dpg.add_button(
             label="Directory Selector", callback=lambda: dpg.show_item("file_dialog_id")
@@ -75,7 +76,7 @@ with dpg.window(tag="Primary Window"):
             height=500,
             default_path=default_path,
         )
-
+    # Template select dropdown
     dpg.add_combo(
         label="Select Template",
         items=templates,
@@ -84,16 +85,17 @@ with dpg.window(tag="Primary Window"):
     )
 
     dpg.add_button(label="Create Folders", callback=create_folders, width=-1, height=50)
+
     dpg.add_text("© 2023 Overmind Studios - Kummer & Gerhardt GbR")
     dpg.add_text("version 0.1")
 
+    # Info message popup
     with dpg.window(
         label="Info",
         modal=True,
         show=False,
         tag="modal_id",
         pos=(300, 200),
-        width=200,
         no_resize=True,
     ):
         dpg.add_text("ERROR", tag="message")
