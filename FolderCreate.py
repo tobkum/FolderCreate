@@ -64,7 +64,7 @@ with dpg.window(tag="Primary Window", autosize=True):
         # Path text field & Directory Selector button
         dpg.add_input_text(default_value=default_path, tag="root_path")
         dpg.add_button(
-            label="Directory Selector", callback=lambda: dpg.show_item("file_dialog_id")
+            label="Choose Directory", callback=lambda: dpg.show_item("file_dialog_id")
         )
         dpg.add_file_dialog(
             directory_selector=True,
