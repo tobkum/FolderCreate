@@ -76,7 +76,6 @@ with dpg.window(tag="Primary Window", autosize=True):
             height=500,
             default_path=default_path,
             modal=True,
-            
         )
     # Template select dropdown
     dpg.add_combo(
@@ -99,7 +98,7 @@ with dpg.window(tag="Primary Window", autosize=True):
         tag="modal_id",
         pos=(300, 200),
         no_resize=True,
-        autosize=True
+        autosize=True,
     ):
         dpg.add_text("ERROR", tag="message")
         dpg.add_button(
