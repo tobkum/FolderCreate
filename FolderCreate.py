@@ -115,7 +115,10 @@ with dpg.window(tag="Primary Window", autosize=True):
 
 
 dpg.create_viewport(
-    title="Overmind Studios FolderCreate " + version, width=700, height=600, decorated=True
+    title="Overmind Studios FolderCreate " + version,
+    width=700,
+    height=600,
+    decorated=True,
 )
 dpg.setup_dearpygui()
 dpg.show_viewport()
