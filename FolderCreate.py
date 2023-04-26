@@ -3,6 +3,8 @@ from yaml import safe_load
 
 from os import path, getcwd, listdir, makedirs
 
+version = "0.1"
+
 templates = []
 newpaths = []
 
@@ -27,6 +29,10 @@ def dict_to_dir(data, top_path=""):
 
 
 dpg.create_context()
+
+with dpg.font_registry():
+    default_font = dpg.add_font("assets/Ubuntu-Regular.ttf", 16)
+    dpg.bind_font(default_font)
 
 
 def callback(_sender, app_data):
@@ -88,7 +94,7 @@ with dpg.window(tag="Primary Window", autosize=True):
     dpg.add_button(label="Create Folders", callback=create_folders, width=-1, height=50)
 
     dpg.add_text("© 2023 Overmind Studios - Kummer & Gerhardt GbR")
-    dpg.add_text("version 0.1")
+    dpg.add_text("version " + version)
 
     # Info message popup
     with dpg.window(
@@ -109,7 +115,7 @@ with dpg.window(tag="Primary Window", autosize=True):
 
 
 dpg.create_viewport(
-    title="Overmind Studios Folder Create", width=700, height=600, decorated=True
+    title="Overmind Studios FolderCreate " + version, width=700, height=600, decorated=True
 )
 dpg.setup_dearpygui()
 dpg.show_viewport()
