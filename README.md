@@ -2,6 +2,7 @@ Creates a folder structure based on a YAML template. For an example of such a YA
 
 ## Usage:
 ~~```python FolderCreate.py VFX.yaml d:\projects\newproject```~~
+
 Added a GUI - Select the target folder from the Directory Selector, the template from the dropdown and click "Create Folders".
 
 ## TODO:
