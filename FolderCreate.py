@@ -81,7 +81,7 @@ with dpg.window(tag="Primary Window", autosize=True):
             width=600,
             height=500,
             default_path=default_path,
-            modal=True,
+            modal=True
         )
     # Template select dropdown
     dpg.add_combo(
