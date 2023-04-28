@@ -118,7 +118,7 @@ dpg.create_viewport(
     title="Overmind Studios FolderCreate " + version,
     width=700,
     height=600,
-    decorated=True,
+    decorated=True
 )
 dpg.setup_dearpygui()
 dpg.set_viewport_large_icon("assets/graphics/appicon.ico")
