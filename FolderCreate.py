@@ -31,7 +31,7 @@ def dict_to_dir(data, top_path=""):
 dpg.create_context()
 
 with dpg.font_registry():
-    default_font = dpg.add_font("assets/Ubuntu-Regular.ttf", 16)
+    default_font = dpg.add_font("assets/fonts/Ubuntu-Regular.ttf", 16)
     dpg.bind_font(default_font)
 
 
@@ -121,6 +121,8 @@ dpg.create_viewport(
     decorated=True,
 )
 dpg.setup_dearpygui()
+dpg.set_viewport_large_icon("assets/graphics/appicon.ico")
+dpg.set_viewport_small_icon("assets/graphics/appicon.ico")
 dpg.show_viewport()
 dpg.set_primary_window("Primary Window", True)
 dpg.start_dearpygui()
