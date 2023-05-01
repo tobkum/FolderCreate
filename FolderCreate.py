@@ -1,4 +1,6 @@
 import dearpygui.dearpygui as dpg
+from dearpygui_ext.themes import create_theme_imgui_dark
+
 from yaml import safe_load
 
 from os import path, getcwd, listdir, makedirs
@@ -120,6 +122,9 @@ dpg.create_viewport(
     height=600,
     decorated=True
 )
+
+dark_theme = create_theme_imgui_dark()
+dpg.bind_theme(dark_theme)
 dpg.setup_dearpygui()
 dpg.set_viewport_large_icon("assets/graphics/appicon.ico")
 dpg.set_viewport_small_icon("assets/graphics/appicon.ico")

@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 pyyaml = "*"
 dearpygui = "*"
+dearpygui-ext = "*"
 
 [dev-packages]
 flake8 = "*"

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1f6d643f2235bb9f8ef1f76d2574598d6d35f7f75e211702dc24d603084446c8"
+            "sha256": "5c51369f8ed105f6f7b7d6e42d6c3b13e42d5b01b423b1ffdddb57e4a82dac64"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -39,6 +39,14 @@
             ],
             "index": "pypi",
             "version": "==1.9.0"
+        },
+        "dearpygui-ext": {
+            "hashes": [
+                "sha256:2ac650936e974aa2b05d5c81528944ad4c446e0bd7aa96dbfd5f66bcc476848d",
+                "sha256:cbdf28c681d8aacc26ddaa875f4ffbd5d32971522cfafc37b43df9c331c21dc2"
+            ],
+            "index": "pypi",
+            "version": "==0.9.5"
         },
         "pyyaml": {
             "hashes": [
@@ -428,11 +436,11 @@
         },
         "platformdirs": {
             "hashes": [
-                "sha256:64370d47dc3fca65b4879f89bdead8197e93e05d696d6d1816243ebae8595da5",
-                "sha256:ea61fd7b85554beecbbd3e9b37fb26689b227ffae38f73353cbcc1cf8bd01878"
+                "sha256:47692bc24c1958e8b0f13dd727307cff1db103fca36399f457da8e05f222fdc4",
+                "sha256:7954a68d0ba23558d753f73437c55f89027cf8f5108c19844d4b82e5af396335"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==3.3.0"
+            "version": "==3.5.0"
         },
         "pycodestyle": {
             "hashes": [
