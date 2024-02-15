@@ -4,14 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pyyaml = "*"
-dearpygui = "*"
-dearpygui-ext = "*"
+pyyaml = "^5.4"
+dearpygui = "^1.0"
+dearpygui-ext = "^0.1"
 
 [dev-packages]
-flake8 = "*"
-black = "*"
-auto-py-to-exe = "*"
+flake8 = "^3.9"
+black = "^21.5b0"
+auto-py-to-exe = "^2.9"
 
 [requires]
 python_version = "3.11"

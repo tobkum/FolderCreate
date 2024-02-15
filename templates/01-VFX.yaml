@@ -1,23 +1,24 @@
-- 00-BRIEFING
-- 01-FROM_CLIENT
-- 10-OWN_FOOTAGE:
-  - 00-RENDER
-  - 10-IMAGES
-  - 20-VIDEOS
-  - 30-AUDIO
-- 50-WORKSPACE:
-  - 00-DEFAULT:
-    - 10-BLENDER
-    - 20-FUSION
-    - 30-AF_PHOTO
-    - 40-AF_DESIGNER
-    - 50-SYNTHEYES
-    - 60-EMBERGEN
-    - 70-AFTEREFFECTS
-- 60-TESTS:
-  - 00-RND
-- 70-INTERNAL_REVIEW
-- 80-REEL
-- 98-EXTERNAL_REVIEW:
-  - 00_OLD
-- 99-DELIVERIES
+Project Folder:
+  - 00-Briefing
+  - 01-From_Client
+  - 10-Own_Footage
+    - 10-Images
+    - 20-Videos
+    - 30-Audio
+  - 20-Workspace
+    - 10-3D_and_VFX
+    - 10-Blender
+    - 20-Fusion
+    - 30-Syntheyes
+    - 40-Embergen
+    - 50-AfterEffects
+    - 20-Graphic_Design
+    - 10-AF_Photo
+    - 20-AF_Designer
+  - 30-Tests_and_RnD
+    - 10-RnD
+  - 40-Internal_Review
+  - 50-Reel
+  - 60-External_Review
+    - 10-Old_Material
+  - 70-Deliveries
