@@ -11,7 +11,7 @@ templates = []
 newpaths = []
 
 default_path = "X:/Geteilte Ablagen/"
-template_path = template_path = path.join(getcwd(), "templates")
+template_path = path.join(getcwd(), "templates")
 for file in listdir(template_path):
     if file.endswith(".yaml"):
         templates.append(file)
@@ -95,7 +95,7 @@ with dpg.window(tag="Primary Window", autosize=True):
 
     dpg.add_button(label="Create Folders", callback=create_folders, width=-1, height=50)
 
-    dpg.add_text("© 2023 Overmind Studios - Kummer & Gerhardt GbR")
+    dpg.add_text("© 2024 Overmind Studios - Kummer & Gerhardt GbR")
     dpg.add_text("version " + version)
 
     # Info message popup
