@@ -87,7 +87,6 @@ with dpg.window(tag="Primary Window", autosize=True):
         )
     # Template select dropdown
     dpg.add_combo(
-        label="Select Template",
         items=templates,
         default_value=templates[0],
         tag="chosen_template",
@@ -95,7 +94,7 @@ with dpg.window(tag="Primary Window", autosize=True):
 
     dpg.add_button(label="Create Folders", callback=create_folders, width=-1, height=50)
 
-    dpg.add_text("© 2024 Overmind Studios - Kummer & Gerhardt GbR")
+    dpg.add_text("© 2025 Overmind Studios - Kummer & Gerhardt GbR")
     dpg.add_text("version " + version)
 
     # Info message popup
