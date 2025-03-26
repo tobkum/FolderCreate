@@ -61,7 +61,7 @@ def close_info_window():
 app = ctk.CTk()
 app.title("Overmind Studios FolderCreate " + version)
 app.geometry("600x400")
-app.resizable(False, False)  # Prevent window resizing
+app.resizable(False, False)
 app.iconbitmap("assets/graphics/appicon.ico")
 app.grid_columnconfigure(0, weight=1)
 app.grid_rowconfigure(3, weight=1)
@@ -83,9 +83,14 @@ choose_dir_button = ctk.CTkButton(
 choose_dir_button.grid(row=0, column=1, padx=(0, 0), pady=10)
 
 # Template Selection Combobox
+template_label = ctk.CTkLabel(app, text="Select Template:")
+template_label.grid(row=1, column=0, padx=20, pady=(10, 0), sticky="w")  # added label
+
 template_combobox = ctk.CTkComboBox(app, values=templates, state="readonly")
 template_combobox.set(templates[0])
-template_combobox.grid(row=1, column=0, padx=20, pady=10, sticky="ew")
+template_combobox.grid(
+    row=2, column=0, padx=20, pady=(0, 10), sticky="ew"
+)  # shifted down
 
 # Create Folders Button
 create_folders_button = ctk.CTkButton(
@@ -95,11 +100,11 @@ create_folders_button = ctk.CTkButton(
     height=40,
     font=("Arial", 16, "bold"),
 )
-create_folders_button.grid(row=2, column=0, padx=20, pady=20, sticky="ew")
+create_folders_button.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
 
 # Copyright and Version Labels
 copyright_label = ctk.CTkLabel(
-    app, text="© 2025 Overmind Studios - Kummer, Gerhardt & Kraus GbR", font=("Arial", 10)
+    app, text="© 2025 Overmind Studios - Kummer & Gerhardt GbR", font=("Arial", 10)
 )
 copyright_label.grid(row=4, column=0, pady=(10, 5))
 
