@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5c51369f8ed105f6f7b7d6e42d6c3b13e42d5b01b423b1ffdddb57e4a82dac64"
+            "sha256": "0f988de72f8cf4df701ab9aeebe004fbfb8fca89d571b899ac06c8e5e0e23ce5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,23 @@
         ]
     },
     "default": {
+        "customtkinter": {
+            "hashes": [
+                "sha256:14ad3e7cd3cb3b9eb642b9d4e8711ae80d3f79fb82545ad11258eeffb2e6b37c",
+                "sha256:fd8db3bafa961c982ee6030dba80b4c2e25858630756b513986db19113d8d207"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.7'",
+            "version": "==5.2.2"
+        },
+        "darkdetect": {
+            "hashes": [
+                "sha256:a7509ccf517eaad92b31c214f593dbcf138ea8a43b2935406bbd565e15527a85",
+                "sha256:b5428e1170263eb5dea44c25dc3895edd75e6f52300986353cd63533fe7df8b1"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==0.8.0"
+        },
         "dearpygui": {
             "hashes": [
                 "sha256:0c7c4849bc674e825750be69ee480450c3589c7d159955032776aaef5e7fda58",
@@ -49,6 +66,14 @@
             "index": "pypi",
             "markers": "python_version >= '3.6'",
             "version": "==0.9.5"
+        },
+        "packaging": {
+            "hashes": [
+                "sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759",
+                "sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f"
+            ],
+            "markers": "python_version >= '3.8'",
+            "version": "==24.2"
         },
         "pyyaml": {
             "hashes": [
