@@ -5,8 +5,6 @@ name = "pypi"
 
 [packages]
 pyyaml = "*"
-dearpygui = "*"
-dearpygui-ext = "*"
 customtkinter = "*"
 
 [dev-packages]
