@@ -58,6 +58,7 @@ def close_info_window():
 app = ctk.CTk()
 app.title("Overmind Studios FolderCreate " + version)
 app.geometry("600x400")
+app.resizable(False, False) # Prevent window resizing
 app.iconbitmap("assets/graphics/appicon.ico")
 app.grid_columnconfigure(0, weight=1)
 app.grid_rowconfigure(3, weight=1)
