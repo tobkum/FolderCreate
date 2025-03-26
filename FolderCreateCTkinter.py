@@ -99,7 +99,7 @@ create_folders_button.grid(row=2, column=0, padx=20, pady=20, sticky="ew")
 
 # Copyright and Version Labels
 copyright_label = ctk.CTkLabel(
-    app, text="© 2025 Overmind Studios - Kummer & Gerhardt GbR", font=("Arial", 10)
+    app, text="© 2025 Overmind Studios - Kummer, Gerhardt & Kraus GbR", font=("Arial", 10)
 )
 copyright_label.grid(row=4, column=0, pady=(10, 5))
 
