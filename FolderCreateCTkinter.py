@@ -52,6 +52,11 @@ def create_folders():
             info_label.configure(text="Done", text_color="green")
     info_window.deiconify()
 
+    # Position the info window relative to the main window
+    x = app.winfo_x() + app.winfo_width() // 2 - info_window.winfo_width() // 2
+    y = app.winfo_y() + app.winfo_height() // 2 - info_window.winfo_height() // 2
+    info_window.geometry(f"+{x}+{y}")
+
 
 def close_info_window():
     info_window.withdraw()
