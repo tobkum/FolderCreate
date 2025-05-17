@@ -1,0 +1,11 @@
+- 01_client:
+  - in
+  - out
+- 02_sources:
+  - geo
+  - references
+- 03_workflow:
+  - blender:
+    - textures
+  - photoshop
+- 04_render
