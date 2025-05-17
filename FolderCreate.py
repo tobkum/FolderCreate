@@ -67,6 +67,7 @@ app = ctk.CTk()
 app.title("Overmind Studios FolderCreate " + version)
 app.geometry("600x400")
 app.resizable(False, False)
+app.option_add("*Font", "Ubuntu 13")  # Set default font for the application
 app.iconbitmap("assets/graphics/appicon.ico")
 app.grid_columnconfigure(0, weight=1)
 app.grid_rowconfigure(3, weight=1)
@@ -103,17 +104,17 @@ create_folders_button = ctk.CTkButton(
     text="Create Folders",
     command=create_folders,
     height=40,
-    font=("Arial", 16, "bold"),
+    font=("Ubuntu", 16, "bold"),
 )
 create_folders_button.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
 
 # Copyright and Version Labels
 copyright_label = ctk.CTkLabel(
-    app, text="© 2025 Overmind Studios - Kummer & Gerhardt GbR", font=("Arial", 10)
+    app, text="© 2025 Overmind Studios - Kummer, Gerhardt & Kraus GbR", font=("Ubuntu", 10)
 )
 copyright_label.grid(row=4, column=0, pady=(10, 5))
 
-version_label = ctk.CTkLabel(app, text="version " + version, font=("Arial", 10))
+version_label = ctk.CTkLabel(app, text="version " + version, font=("Ubuntu", 10))
 version_label.grid(row=5, column=0, pady=(0, 20))
 
 # Info Message Popup Window

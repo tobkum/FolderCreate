@@ -7,7 +7,7 @@
   },
   {
    "optionDest": "filenames",
-   "value": "F:/PyDev/FolderCreate/FolderCreate.py"
+   "value": "D:/PyDev/FolderCreate/FolderCreate.py"
   },
   {
    "optionDest": "onefile",
@@ -19,11 +19,7 @@
   },
   {
    "optionDest": "icon_file",
-   "value": "F:/PyDev/FolderCreate/assets/graphics/appicon.ico"
-  },
-  {
-   "optionDest": "ascii",
-   "value": false
+   "value": "D:/PyDev/FolderCreate/assets/graphics/appicon.ico"
   },
   {
    "optionDest": "clean_build",
@@ -42,10 +38,6 @@
    "value": false
   },
   {
-   "optionDest": "embed_manifest",
-   "value": true
-  },
-  {
    "optionDest": "uac_admin",
    "value": false
   },
@@ -54,11 +46,7 @@
    "value": false
   },
   {
-   "optionDest": "win_private_assemblies",
-   "value": false
-  },
-  {
-   "optionDest": "win_no_prefer_redirects",
+   "optionDest": "argv_emulation",
    "value": false
   },
   {
@@ -66,16 +54,12 @@
    "value": false
   },
   {
-   "optionDest": "argv_emulation",
-   "value": false
+   "optionDest": "datas",
+   "value": "D:/PyDev/FolderCreate/assets;assets/"
   },
   {
    "optionDest": "datas",
-   "value": "F:/PyDev/FolderCreate/assets;assets/"
-  },
-  {
-   "optionDest": "datas",
-   "value": "F:/PyDev/FolderCreate/templates;templates/"
+   "value": "D:/PyDev/FolderCreate/templates;templates/"
   }
  ],
  "nonPyinstallerOptions": {

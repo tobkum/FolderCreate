@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 pyyaml = "*"
 customtkinter = "*"
+py2exe = "*"
+auto-py-to-exe = "*"
 
 [dev-packages]
 flake8 = "*"
