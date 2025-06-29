@@ -35,21 +35,28 @@ def choose_directory():
 
 
 def create_folders():
+    newpaths.clear()  # Clear previous paths
     template = template_combobox.get()
     root_path = root_path_entry.get()
     with open(os.path.join(template_path, template), "r") as stream:
         data = yaml.safe_load(stream)
         dict_to_dir(data)
+    
+    errors_occurred = False
     for i in newpaths:
         try:
             os.makedirs(os.path.join(root_path, i), exist_ok=True)
-        except Exception:
-            info_label.configure(
-                text="An error occurred, please check if the directory is writable.",
-                text_color="red",
-            )
-        else:
-            info_label.configure(text="Done", text_color="green")
+        except Exception as e:
+            print(f"Error creating directory {os.path.join(root_path, i)}: {e}")
+            errors_occurred = True
+    
+    if errors_occurred:
+        info_label.configure(
+            text="An error occurred, please check if the directory is writable. See console for details.",
+            text_color="red",
+        )
+    else:
+        info_label.configure(text="Done", text_color="green")
     info_window.deiconify()
 
     # Position the info window relative to the main window
@@ -110,7 +117,9 @@ create_folders_button.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
 
 # Copyright and Version Labels
 copyright_label = ctk.CTkLabel(
-    app, text="© 2025 Overmind Studios - Kummer, Gerhardt & Kraus GbR", font=("Ubuntu", 10)
+    app,
+    text="© 2025 Overmind Studios - Kummer, Gerhardt & Kraus GbR",
+    font=("Ubuntu", 10),
 )
 copyright_label.grid(row=4, column=0, pady=(10, 5))
 
