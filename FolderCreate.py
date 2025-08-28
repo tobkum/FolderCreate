@@ -2,7 +2,7 @@ import customtkinter as ctk
 import os
 import yaml
 
-version = "0.2"
+version = "0.3"
 
 
 # --- Constants and Setup ---
@@ -125,6 +125,9 @@ def create_folders():
 def close_info_window():
     info_window.withdraw()
 
+def close_preview_window():
+    preview_window.withdraw()
+
 
 # --- Main Application Window ---
 app = ctk.CTk()
@@ -136,7 +139,106 @@ app.iconbitmap("assets/graphics/appicon.ico")
 app.grid_columnconfigure(0, weight=1)
 app.grid_rowconfigure(3, weight=1)
 
+
+# --- Preview Window ---
+preview_window = ctk.CTkToplevel(app)
+preview_window.title("Folder Structure Preview")
+preview_window.geometry("500x400")
+preview_window.withdraw()  # Hide initially
+preview_window.resizable(False, False)
+
+preview_frame = ctk.CTkFrame(preview_window)
+preview_frame.pack(expand=True, fill="both", padx=20, pady=20)
+
+preview_textbox = ctk.CTkTextbox(preview_frame, wrap="none")
+preview_textbox.pack(expand=True, fill="both", pady=10)
+
+preview_ok_button = ctk.CTkButton(preview_frame, text="OK", command=close_preview_window)
+preview_ok_button.pack(pady=10)
+
+
+def format_paths_as_tree(paths, root_dir):
+    """
+    Formats a flat list of paths into a human-readable tree structure string.
+    """
+    if not paths:
+        return "(No folders to create)"
+
+    # Build a nested dictionary representation of the tree
+    tree = {}
+    for path in paths:
+        parts = path.split(os.sep)
+        current_level = tree
+        for part in parts:
+            current_level = current_level.setdefault(part, {})
+
+    def build_tree_string(node, indent="", is_last=False, prefix=""):
+        s = ""
+        keys = list(node.keys())
+        for i, key in enumerate(keys):
+            is_last_child = (i == len(keys) - 1)
+            s += f"{indent}{prefix}{'└── ' if is_last_child else '├── '}{key}/\n"
+            s += build_tree_string(node[key], indent + ("    " if is_last_child else "│   "), is_last_child, "")
+        return s
+
+    # Start building the string with the root directory
+    tree_string = f"{root_dir}/\n"
+    tree_string += build_tree_string(tree)
+    return tree_string
+
+def show_preview_window():
+    # Placeholder for preview generation logic
+    preview_textbox.delete("1.0", ctk.END)
+    preview_textbox.insert("1.0", "Generating preview...")
+
+    root_path = root_path_entry.get()
+    template_name = template_combobox.get()
+    template_file_path = os.path.join(TEMPLATE_PATH, template_name)
+
+    try:
+        with open(template_file_path, "r", encoding="utf-8") as stream:
+            data = yaml.safe_load(stream)
+    except (FileNotFoundError, yaml.YAMLError, Exception) as e:
+        preview_textbox.delete("1.0", ctk.END)
+        preview_textbox.insert("1.0", f"Error loading template: {e}")
+        preview_window.deiconify()
+        return
+
+    if data is None:
+        preview_textbox.delete("1.0", ctk.END)
+        preview_textbox.insert("1.0", "Template file is empty.")
+        preview_window.deiconify()
+        return
+
+    paths_to_create = _generate_paths_from_template_data(data)
+
+    if not paths_to_create:
+        preview_textbox.delete("1.0", ctk.END)
+        preview_textbox.insert("1.0", "Template is valid, but contains no folders to create.")
+        preview_window.deiconify()
+        return
+
+    # Format paths as tree
+    tree_string = format_paths_as_tree(paths_to_create, root_path)
+    preview_textbox.delete("1.0", ctk.END)
+    preview_textbox.insert("1.0", tree_string)
+
+    preview_window.deiconify()
+    # Position the preview window relative to the main window
+    x = app.winfo_x() + app.winfo_width() // 2 - preview_window.winfo_width() // 2
+    y = app.winfo_y() + app.winfo_height() // 2 - preview_window.winfo_height() // 2
+    preview_window.geometry(f"+{x}+{y}")
+
+def close_info_window():
+    info_window.withdraw()
+
+def close_preview_window():
+    preview_window.withdraw()
+
+
 # --- UI Elements ---
+
+
 
 # Directory Selection Frame
 directory_frame = ctk.CTkFrame(app)
@@ -169,7 +271,16 @@ create_folders_button = ctk.CTkButton(
     height=40,
     font=("Ubuntu", 16, "bold"),
 )
-create_folders_button.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
+create_folders_button.grid(row=3, column=0, padx=20, pady=(20, 10), sticky="ew")
+
+preview_button = ctk.CTkButton(
+    app,
+    text="Preview Structure",
+    command=show_preview_window,
+    height=30,
+    font=("Ubuntu", 13),
+)
+preview_button.grid(row=4, column=0, padx=20, pady=(0, 20), sticky="ew")
 
 
 # --- Copyright and Version Labels ---
@@ -178,10 +289,10 @@ copyright_label = ctk.CTkLabel(
     text="© 2025 Overmind Studios - Kummer, Gerhardt & Kraus GbR",
     font=("Ubuntu", 10),
 )
-copyright_label.grid(row=4, column=0, pady=(10, 5))
+copyright_label.grid(row=5, column=0, pady=(10, 5))
 
 version_label = ctk.CTkLabel(app, text="version " + version, font=("Ubuntu", 10))
-version_label.grid(row=5, column=0, pady=(0, 20))
+version_label.grid(row=6, column=0, pady=(0, 20))
 
 
 # --- Info Message Popup Window ---
