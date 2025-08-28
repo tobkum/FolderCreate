@@ -80,16 +80,21 @@ def choose_directory():
         root_path_entry.insert(0, directory)
 
 def set_default_path():
-    """Allows the user to select and set a new default path."""
-    new_default = ctk.filedialog.askdirectory(initialdir=root_path_entry.get())
-    if new_default:
-        if save_default_path(new_default):
-            root_path_entry.delete(0, ctk.END)
-            root_path_entry.insert(0, new_default)
-            info_label.configure(text="Default path updated!", text_color="green")
+    """Sets the currently selected directory as the new default path."""
+    current_path = root_path_entry.get()
+    if os.path.isdir(current_path): # Check if the path in the entry is a valid directory
+        if save_default_path(current_path):
+            info_label.configure(text=f"Default path set to: {current_path}", text_color="green")
         else:
             info_label.configure(text="Failed to save default path.", text_color="red")
-        info_window.deiconify()
+    else:
+        info_label.configure(text="Invalid path in entry. Please select a valid directory first.", text_color="orange")
+    info_window.deiconify()
+
+    # Position the info window relative to the main window
+    x = app.winfo_x() + app.winfo_width() // 2 - info_window.winfo_width() // 2
+    y = app.winfo_y() + app.winfo_height() // 2 - info_window.winfo_height() // 2
+    info_window.geometry(f"+{x}+{y}")
 
 
 def create_folders():
