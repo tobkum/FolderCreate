@@ -263,6 +263,17 @@ template_label.grid(row=1, column=0, padx=20, pady=(10, 0), sticky="w")
 template_combobox = ctk.CTkComboBox(app, state="readonly")
 template_combobox.grid(row=2, column=0, padx=20, pady=(0, 10), sticky="ew")
 
+preview_button = ctk.CTkButton(
+    app,
+    text="Preview Structure",
+    command=show_preview_window,
+    height=30,
+    font=("Ubuntu", 13),
+    fg_color=("gray50", "gray30"),  # Less prominent foreground color
+    hover_color=("gray40", "gray20"),  # Less prominent hover color
+)
+preview_button.grid(row=3, column=0, padx=20, pady=(20, 10), sticky="ew")
+
 # Create Folders Button
 create_folders_button = ctk.CTkButton(
     app,
@@ -271,16 +282,7 @@ create_folders_button = ctk.CTkButton(
     height=40,
     font=("Ubuntu", 16, "bold"),
 )
-create_folders_button.grid(row=3, column=0, padx=20, pady=(20, 10), sticky="ew")
-
-preview_button = ctk.CTkButton(
-    app,
-    text="Preview Structure",
-    command=show_preview_window,
-    height=30,
-    font=("Ubuntu", 13),
-)
-preview_button.grid(row=4, column=0, padx=20, pady=(0, 20), sticky="ew")
+create_folders_button.grid(row=4, column=0, padx=20, pady=(0, 20), sticky="ew")
 
 
 # --- Copyright and Version Labels ---
