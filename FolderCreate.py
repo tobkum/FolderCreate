@@ -4,10 +4,34 @@ import yaml
 
 version = "0.3"
 
+# Global variable to store the last created root path
+last_created_root_path = None
 
 # --- Constants and Setup ---
-DEFAULT_PATH = "X:/Geteilte Ablagen/"
+DEFAULT_PATH_FILE = "default_path.txt"
+DEFAULT_PATH = "X:/Geteilte Ablagen/" # Fallback default path
 TEMPLATE_PATH = os.path.join(os.getcwd(), "templates")
+
+def load_default_path():
+    """Loads the default path from a file, or returns the hardcoded default."""
+    try:
+        with open(DEFAULT_PATH_FILE, "r") as f:
+            path = f.read().strip()
+            if os.path.isdir(path):
+                return path
+    except FileNotFoundError:
+        pass # File doesn't exist, use hardcoded default
+    return DEFAULT_PATH
+
+def save_default_path(path):
+    """Saves the given path as the new default path."""
+    try:
+        with open(DEFAULT_PATH_FILE, "w") as f:
+            f.write(path)
+        return True
+    except Exception as e:
+        print(f"Error saving default path: {e}")
+        return False
 
 
 def load_templates(path):
@@ -50,10 +74,22 @@ def _generate_paths_from_template_data(data, current_path=""):
 
 def choose_directory():
     """Opens a dialog to choose the root directory for folder creation."""
-    directory = ctk.filedialog.askdirectory(initialdir=DEFAULT_PATH)
+    directory = ctk.filedialog.askdirectory(initialdir=root_path_entry.get())
     if directory:
         root_path_entry.delete(0, ctk.END)
         root_path_entry.insert(0, directory)
+
+def set_default_path():
+    """Allows the user to select and set a new default path."""
+    new_default = ctk.filedialog.askdirectory(initialdir=root_path_entry.get())
+    if new_default:
+        if save_default_path(new_default):
+            root_path_entry.delete(0, ctk.END)
+            root_path_entry.insert(0, new_default)
+            info_label.configure(text="Default path updated!", text_color="green")
+        else:
+            info_label.configure(text="Failed to save default path.", text_color="red")
+        info_window.deiconify()
 
 
 def create_folders():
@@ -114,6 +150,8 @@ def create_folders():
         )
     else:
         info_label.configure(text="Done", text_color="green")
+        global last_created_root_path
+        last_created_root_path = root_path
     info_window.deiconify()
 
     # Position the info window relative to the main window
@@ -248,13 +286,20 @@ directory_frame.grid_columnconfigure(0, weight=1)
 root_path_entry = ctk.CTkEntry(
     directory_frame, width=400, placeholder_text="Select Directory"
 )
-root_path_entry.insert(0, DEFAULT_PATH)
 root_path_entry.grid(row=0, column=0, padx=(0, 10), pady=10, sticky="ew")
 
 choose_dir_button = ctk.CTkButton(
     directory_frame, text="Browse", command=choose_directory
 )
 choose_dir_button.grid(row=0, column=1, padx=(0, 0), pady=10)
+
+set_default_path_button = ctk.CTkButton(
+    directory_frame, text="Set Default", command=set_default_path
+)
+set_default_path_button.grid(row=0, column=2, padx=(10, 0), pady=10)
+
+# Initialize root_path_entry with the loaded default path
+root_path_entry.insert(0, load_default_path())
 
 # Template Selection Combobox
 template_label = ctk.CTkLabel(app, text="Select Template:")
@@ -282,7 +327,8 @@ create_folders_button = ctk.CTkButton(
     height=40,
     font=("Ubuntu", 16, "bold"),
 )
-create_folders_button.grid(row=4, column=0, padx=20, pady=(0, 20), sticky="ew")
+create_folders_button.grid(row=4, column=0, padx=20, pady=(0, 10), sticky="ew")
+
 
 
 # --- Copyright and Version Labels ---
