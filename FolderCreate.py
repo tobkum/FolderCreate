@@ -9,8 +9,9 @@ last_created_root_path = None
 
 # --- Constants and Setup ---
 DEFAULT_PATH_FILE = "default_path.txt"
-DEFAULT_PATH = "X:/Geteilte Ablagen/" # Fallback default path
+DEFAULT_PATH = "X:/Geteilte Ablagen/"  # Fallback default path
 TEMPLATE_PATH = os.path.join(os.getcwd(), "templates")
+
 
 def load_default_path():
     """Loads the default path from a file, or returns the hardcoded default."""
@@ -20,8 +21,9 @@ def load_default_path():
             if os.path.isdir(path):
                 return path
     except FileNotFoundError:
-        pass # File doesn't exist, use hardcoded default
+        pass  # File doesn't exist, use hardcoded default
     return DEFAULT_PATH
+
 
 def save_default_path(path):
     """Saves the given path as the new default path."""
@@ -79,16 +81,24 @@ def choose_directory():
         root_path_entry.delete(0, ctk.END)
         root_path_entry.insert(0, directory)
 
+
 def set_default_path():
     """Sets the currently selected directory as the new default path."""
     current_path = root_path_entry.get()
-    if os.path.isdir(current_path): # Check if the path in the entry is a valid directory
+    if os.path.isdir(
+        current_path
+    ):  # Check if the path in the entry is a valid directory
         if save_default_path(current_path):
-            info_label.configure(text=f"Default path set to: {current_path}", text_color="green")
+            info_label.configure(
+                text=f"Default path set to: {current_path}", text_color="green"
+            )
         else:
             info_label.configure(text="Failed to save default path.", text_color="red")
     else:
-        info_label.configure(text="Invalid path in entry. Please select a valid directory first.", text_color="orange")
+        info_label.configure(
+            text="Invalid path in entry. Please select a valid directory first.",
+            text_color="orange",
+        )
     info_window.deiconify()
 
     # Position the info window relative to the main window
@@ -118,7 +128,9 @@ def create_folders():
         info_window.deiconify()
         return
     except Exception as e:
-        info_label.configure(text=f"An unexpected error occurred: {e}", text_color="red")
+        info_label.configure(
+            text=f"An unexpected error occurred: {e}", text_color="red"
+        )
         info_window.deiconify()
         return
 
@@ -168,6 +180,7 @@ def create_folders():
 def close_info_window():
     info_window.withdraw()
 
+
 def close_preview_window():
     preview_window.withdraw()
 
@@ -196,7 +209,9 @@ preview_frame.pack(expand=True, fill="both", padx=20, pady=20)
 preview_textbox = ctk.CTkTextbox(preview_frame, wrap="none")
 preview_textbox.pack(expand=True, fill="both", pady=10)
 
-preview_ok_button = ctk.CTkButton(preview_frame, text="OK", command=close_preview_window)
+preview_ok_button = ctk.CTkButton(
+    preview_frame, text="OK", command=close_preview_window
+)
 preview_ok_button.pack(pady=10)
 
 
@@ -219,15 +234,21 @@ def format_paths_as_tree(paths, root_dir):
         s = ""
         keys = list(node.keys())
         for i, key in enumerate(keys):
-            is_last_child = (i == len(keys) - 1)
+            is_last_child = i == len(keys) - 1
             s += f"{indent}{prefix}{'└── ' if is_last_child else '├── '}{key}/\n"
-            s += build_tree_string(node[key], indent + ("    " if is_last_child else "│   "), is_last_child, "")
+            s += build_tree_string(
+                node[key],
+                indent + ("    " if is_last_child else "│   "),
+                is_last_child,
+                "",
+            )
         return s
 
     # Start building the string with the root directory
     tree_string = f"{root_dir}/\n"
     tree_string += build_tree_string(tree)
     return tree_string
+
 
 def show_preview_window():
     # Placeholder for preview generation logic
@@ -257,7 +278,9 @@ def show_preview_window():
 
     if not paths_to_create:
         preview_textbox.delete("1.0", ctk.END)
-        preview_textbox.insert("1.0", "Template is valid, but contains no folders to create.")
+        preview_textbox.insert(
+            "1.0", "Template is valid, but contains no folders to create."
+        )
         preview_window.deiconify()
         return
 
@@ -272,15 +295,16 @@ def show_preview_window():
     y = app.winfo_y() + app.winfo_height() // 2 - preview_window.winfo_height() // 2
     preview_window.geometry(f"+{x}+{y}")
 
+
 def close_info_window():
     info_window.withdraw()
+
 
 def close_preview_window():
     preview_window.withdraw()
 
 
 # --- UI Elements ---
-
 
 
 # Directory Selection Frame
@@ -333,7 +357,6 @@ create_folders_button = ctk.CTkButton(
     font=("Ubuntu", 16, "bold"),
 )
 create_folders_button.grid(row=4, column=0, padx=20, pady=(0, 10), sticky="ew")
-
 
 
 # --- Copyright and Version Labels ---
