@@ -2,6 +2,8 @@
 
 FolderCreate is a simple desktop application that creates a folder structure based on predefined YAML templates. It provides a user-friendly graphical interface to select a root directory and a template, and then generates the specified directory tree.
 
+![Screenshot](screenshot.png)
+
 ## Features
 
 *   **Graphical User Interface (GUI):** An intuitive interface for selecting directories and templates.
