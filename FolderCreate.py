@@ -177,14 +177,6 @@ def create_folders():
     info_window.geometry(f"+{x}+{y}")
 
 
-def close_info_window():
-    info_window.withdraw()
-
-
-def close_preview_window():
-    preview_window.withdraw()
-
-
 # --- Main Application Window ---
 app = ctk.CTk()
 app.title("Overmind Studios FolderCreate " + version)
