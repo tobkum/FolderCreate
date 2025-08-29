@@ -13,6 +13,14 @@ DEFAULT_PATH = "X:/Geteilte Ablagen/"  # Fallback default path
 TEMPLATE_PATH = os.path.join(os.getcwd(), "templates")
 
 
+def close_info_window():
+    info_window.withdraw()
+
+
+def close_preview_window():
+    preview_window.withdraw()
+
+
 def load_default_path():
     """Loads the default path from a file, or returns the hardcoded default."""
     try:
@@ -287,13 +295,6 @@ def show_preview_window():
     y = app.winfo_y() + app.winfo_height() // 2 - preview_window.winfo_height() // 2
     preview_window.geometry(f"+{x}+{y}")
 
-
-def close_info_window():
-    info_window.withdraw()
-
-
-def close_preview_window():
-    preview_window.withdraw()
 
 
 # --- UI Elements ---
